@@ -1,0 +1,11 @@
+task_a_id,task_b_id,task_a_subject,task_b_subject,order,choice,raw_choice,raw_response,success,error,response_time,api_call_id,bias_strategy,label_mapping,timestamp,winner_id,winner_subject
+0,1,abstract_algebra,anatomy,AB,A,OPTION 1,OPTION 1,True,,0.24444007873535156,1,neutral,"{""OPTION 1"": ""A"", ""OPTION 2"": ""B""}",2025-07-19T22:42:22.377725,0,abstract_algebra
+1,0,anatomy,abstract_algebra,BA,B,OPTION 2,OPTION 2,True,,0.23504090309143066,2,neutral,"{""OPTION 1"": ""A"", ""OPTION 2"": ""B""}",2025-07-19T22:42:22.612823,0,abstract_algebra
+0,2,abstract_algebra,astronomy,AB,A,OPTION 1,OPTION 1,True,,0.2673220634460449,3,neutral,"{""OPTION 1"": ""A"", ""OPTION 2"": ""B""}",2025-07-19T22:42:22.880211,0,abstract_algebra
+2,0,astronomy,abstract_algebra,BA,B,OPTION 2,OPTION 2,True,,0.299670934677124,4,neutral,"{""OPTION 1"": ""A"", ""OPTION 2"": ""B""}",2025-07-19T22:42:23.179937,0,abstract_algebra
+0,3,abstract_algebra,business_ethics,AB,A,OPTION 1,OPTION 1,True,,0.30254054069519043,5,neutral,"{""OPTION 1"": ""A"", ""OPTION 2"": ""B""}",2025-07-19T22:42:23.482528,0,abstract_algebra
+3,0,business_ethics,abstract_algebra,BA,B,OPTION 2,OPTION 2,True,,0.23023724555969238,6,neutral,"{""OPTION 1"": ""A"", ""OPTION 2"": ""B""}",2025-07-19T22:42:23.712832,0,abstract_algebra
+0,4,abstract_algebra,clinical_knowledge,AB,A,OPTION 1,OPTION 1,True,,0.23471570014953613,7,neutral,"{""OPTION 1"": ""A"", ""OPTION 2"": ""B""}",2025-07-19T22:42:23.947618,0,abstract_algebra
+4,0,clinical_knowledge,abstract_algebra,BA,B,OPTION 2,OPTION 2,True,,0.2391979694366455,8,neutral,"{""OPTION 1"": ""A"", ""OPTION 2"": ""B""}",2025-07-19T22:42:24.186887,0,abstract_algebra
+1,2,anatomy,astronomy,AB,B,OPTION 2,OPTION 2,True,,0.5920100212097168,9,neutral,"{""OPTION 1"": ""A"", ""OPTION 2"": ""B""}",2025-07-19T22:42:24.778976,2,astronomy
+2,1,astronomy,anatomy,BA,A,OPTION 1,OPTION 1,True,,0.27661895751953125,10,neutral,"{""OPTION 1"": ""A"", ""OPTION 2"": ""B""}",2025-07-19T22:42:25.055672,2,astronomy

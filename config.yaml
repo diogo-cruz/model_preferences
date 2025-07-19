@@ -1,0 +1,58 @@
+# Model Preferences Experiment Configuration
+
+# Experiment Settings
+experiment:
+  name: "model_task_preferences"
+  description: "Investigating systematic task preferences in AI models"
+  seed: 42
+  
+# Model Configuration
+model:
+  name: "gpt-4.1-nano"  # Target model for final experiments
+  fallback_name: "gpt-4o-mini"  # Fallback if target unavailable
+  max_tokens: 10
+  temperature: 0.0  # Deterministic responses
+  timeout: 30  # Request timeout in seconds
+  
+# Task Selection
+tasks:
+  count: 50  # Number of tasks to sample from MMLU (reduced for demonstration)
+  test_count: 20  # Number of tasks for medium-scale testing
+  small_test_count: 5  # Number of tasks for small tests
+  
+# Experiment Control
+comparisons:
+  include_reverse: true  # Test both A-B and B-A orderings
+  max_test_comparisons: 50  # Limit for testing runs
+  
+# Bias Correction
+bias_correction:
+  default_strategy: "neutral"  # Best performing strategy
+  available_strategies: ["original", "randomized", "neutral", "blind"]
+  
+# Data Processing
+processing:
+  choice_patterns:
+    - r'\b(TASK\s*A|OPTION\s*A|CHOICE\s*A|CHOOSE\s*A|A\b)'
+    - r'\b(TASK\s*B|OPTION\s*B|CHOICE\s*B|CHOOSE\s*B|B\b)'
+  
+# Output Settings
+output:
+  save_plots_png: true
+  save_plots_pdf: true
+  metadata_indent: 2
+  
+# Analysis Configuration
+analysis:
+  bradley_terry:
+    max_iterations: 1000
+    convergence_tolerance: 1e-6
+  transitivity:
+    significance_level: 0.05
+  
+# Paths (relative to project root)
+paths:
+  experiments: "experiments"
+  logs: "logs" 
+  report: "report"
+  src: "src"

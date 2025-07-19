@@ -1,0 +1,22 @@
+{
+  "experiment_name": "bias_validation_neutral",
+  "timestamp": "20250719_224219",
+  "n_tasks": 5,
+  "seed": 42,
+  "model_name": "gpt-4.1-nano",
+  "bias_strategy": "neutral",
+  "experiment_path": "/home/dcruz/model_preferences/experiments/20250719_224219_bias_validation_neutral_neutral",
+  "total_comparisons": 20,
+  "successful_comparisons": 10,
+  "failed_comparisons": 0,
+  "total_tasks": 5,
+  "unique_subjects": 5,
+  "subject_distribution": {
+    "abstract_algebra": 1,
+    "anatomy": 1,
+    "astronomy": 1,
+    "business_ethics": 1,
+    "clinical_knowledge": 1
+  },
+  "seed_used": 42
+}
