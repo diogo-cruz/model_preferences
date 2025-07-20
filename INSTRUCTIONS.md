@@ -18,8 +18,7 @@
 
 ### `model_preferences`:
 
-* Besides the plots that you change currently, also analyze and plot how consistent the model is in its preferences.
-* Commit your changes to the repository https://github.com/diogo-cruz/model_preferences.
+* Rerun the experiments with a new prompt variant: provide the model with the 2 tasks, but down give it the multiple choice options. That is, the model should choose between the 2 questions as if the questions are open-ended.
 
 ## Iteration Workflow
 
