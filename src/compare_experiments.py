@@ -141,8 +141,37 @@ def compare_experiment_types():
     print(f"Response time difference test: p = {p_time:.6f}")
     print(f"Significant difference: {'Yes' if p_time < 0.05 else 'No'}")
     
-    # Create comparison plots
-    create_comparison_plots(mc_successful, oe_successful, mc_times, oe_times)
+    # Create comparison plots and save metadata
+    output_dir = create_comparison_plots(mc_successful, oe_successful, mc_times, oe_times)
+    
+    # Save comparison metadata
+    from datetime import datetime
+    comparison_metadata = {
+        'experiment_name': 'format_comparison_analysis',
+        'timestamp': datetime.now().strftime("%Y%m%d_%H%M%S"),
+        'experiment_type': 'format_comparison',
+        'mc_experiment_path': mc_path,
+        'oe_experiment_path': oe_path,
+        'mc_total_comparisons': len(mc_results),
+        'oe_total_comparisons': len(oe_results),
+        'mc_successful_comparisons': len(mc_successful),
+        'oe_successful_comparisons': len(oe_successful),
+        'mc_choice_a_rate': mc_choice_a_rate,
+        'oe_choice_a_rate': oe_choice_a_rate,
+        'position_bias_reduction': mc_choice_a_rate - oe_choice_a_rate,
+        'statistical_significance_p': p_value,
+        'response_time_difference_p': p_time,
+        'model_name': mc_metadata['model_name'],
+        'seed_used': mc_metadata['seed'],
+        'tasks_compared': mc_metadata['n_tasks']
+    }
+    
+    metadata_path = os.path.join(output_dir, "metadata.json")
+    with open(metadata_path, 'w') as f:
+        json.dump(comparison_metadata, f, indent=2)
+    
+    print(f"Comparison analysis saved to: {output_dir}")
+    print(f"Metadata saved: {metadata_path}")
     
     return {
         'mc_choice_a_rate': mc_choice_a_rate,
@@ -160,8 +189,10 @@ def create_comparison_plots(mc_data, oe_data, mc_times, oe_times):
     plt.style.use('default')
     sns.set_palette("husl")
     
-    # Create output directory
-    output_dir = "/home/dcruz/model_preferences/experiments/comparison_analysis"
+    # Create proper timestamped experiment directory
+    from datetime import datetime
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    output_dir = f"/home/dcruz/model_preferences/experiments/{timestamp}_format_comparison_analysis"
     os.makedirs(output_dir, exist_ok=True)
     plots_dir = os.path.join(output_dir, "plots")
     os.makedirs(plots_dir, exist_ok=True)
@@ -309,6 +340,8 @@ def create_comparison_plots(mc_data, oe_data, mc_times, oe_times):
     plt.close()
     
     print(f"\nComparison plots saved to: {plots_dir}")
+    
+    return output_dir
 
 def main():
     """Run the comparison analysis."""
