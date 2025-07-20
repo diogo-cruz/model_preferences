@@ -16,8 +16,14 @@
 
 ## Project-Specific Next Steps Instructions
 
-* Your open ended question prompt tells the model what the consider, so it is biasing the results. I want the prompt to be super simple. You should tell the model that it must do one of two tasks, and to pick which one it wants to do. That's it. And you should randomize the order of the tasks in the prompt to account for the bias.
-* The current error bars are pretty big, so run 5x more examples, if possible.
+* I'd now like you to take the existent results, implementation, and conclusion, and write a paper for a NeurIPS workshop. The paper should be in the `report/` folder, and should be in the `main.tex` file. Consider the following:
+- **Purpose**: Generate a NeurIPS workshop paper format report
+- **Structure**: Abstract, Introduction, Setup, Results and Discussion, Conclusion, Related Work
+- **Requirements**:
+  - Self-contained (copy figures, don't use relative paths)
+  - Use PDF figures in LaTeX for vector graphics
+  - Include literature review files
+  - Include bibliography file
 
 ## Iteration Workflow
 
