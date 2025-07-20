@@ -1,0 +1,1019 @@
+{
+  "pairwise_consistency": {
+    "total_reversible_pairs": 44,
+    "consistent_pairs": 16,
+    "inconsistent_pairs": 28,
+    "consistency_rate": 0.36363636363636365,
+    "details": [
+      {
+        "task_pair": [
+          10,
+          12
+        ],
+        "ab_winner": 12,
+        "ba_winner": 12,
+        "consistent": true
+      },
+      {
+        "task_pair": [
+          1,
+          2
+        ],
+        "ab_winner": 1,
+        "ba_winner": 1,
+        "consistent": true
+      },
+      {
+        "task_pair": [
+          11,
+          12
+        ],
+        "ab_winner": 11,
+        "ba_winner": 12,
+        "consistent": false
+      },
+      {
+        "task_pair": [
+          13,
+          14
+        ],
+        "ab_winner": 13,
+        "ba_winner": 13,
+        "consistent": true
+      },
+      {
+        "task_pair": [
+          4,
+          6
+        ],
+        "ab_winner": 4,
+        "ba_winner": 6,
+        "consistent": false
+      },
+      {
+        "task_pair": [
+          2,
+          3
+        ],
+        "ab_winner": 2,
+        "ba_winner": 2,
+        "consistent": true
+      },
+      {
+        "task_pair": [
+          1,
+          3
+        ],
+        "ab_winner": 1,
+        "ba_winner": 1,
+        "consistent": true
+      },
+      {
+        "task_pair": [
+          3,
+          13
+        ],
+        "ab_winner": 13,
+        "ba_winner": 13,
+        "consistent": true
+      },
+      {
+        "task_pair": [
+          6,
+          7
+        ],
+        "ab_winner": 6,
+        "ba_winner": 7,
+        "consistent": false
+      },
+      {
+        "task_pair": [
+          9,
+          12
+        ],
+        "ab_winner": 9,
+        "ba_winner": 12,
+        "consistent": false
+      },
+      {
+        "task_pair": [
+          12,
+          14
+        ],
+        "ab_winner": 12,
+        "ba_winner": 14,
+        "consistent": false
+      },
+      {
+        "task_pair": [
+          14,
+          16
+        ],
+        "ab_winner": 16,
+        "ba_winner": 16,
+        "consistent": true
+      },
+      {
+        "task_pair": [
+          12,
+          13
+        ],
+        "ab_winner": 12,
+        "ba_winner": 13,
+        "consistent": false
+      },
+      {
+        "task_pair": [
+          2,
+          4
+        ],
+        "ab_winner": 4,
+        "ba_winner": 2,
+        "consistent": false
+      },
+      {
+        "task_pair": [
+          17,
+          19
+        ],
+        "ab_winner": 17,
+        "ba_winner": 19,
+        "consistent": false
+      },
+      {
+        "task_pair": [
+          6,
+          8
+        ],
+        "ab_winner": 6,
+        "ba_winner": 8,
+        "consistent": false
+      },
+      {
+        "task_pair": [
+          16,
+          17
+        ],
+        "ab_winner": 16,
+        "ba_winner": 17,
+        "consistent": false
+      },
+      {
+        "task_pair": [
+          9,
+          10
+        ],
+        "ab_winner": 9,
+        "ba_winner": 10,
+        "consistent": false
+      },
+      {
+        "task_pair": [
+          8,
+          10
+        ],
+        "ab_winner": 8,
+        "ba_winner": 10,
+        "consistent": false
+      },
+      {
+        "task_pair": [
+          3,
+          16
+        ],
+        "ab_winner": 16,
+        "ba_winner": 16,
+        "consistent": true
+      },
+      {
+        "task_pair": [
+          15,
+          17
+        ],
+        "ab_winner": 15,
+        "ba_winner": 17,
+        "consistent": false
+      },
+      {
+        "task_pair": [
+          4,
+          5
+        ],
+        "ab_winner": 4,
+        "ba_winner": 5,
+        "consistent": false
+      },
+      {
+        "task_pair": [
+          8,
+          9
+        ],
+        "ab_winner": 8,
+        "ba_winner": 9,
+        "consistent": false
+      },
+      {
+        "task_pair": [
+          18,
+          19
+        ],
+        "ab_winner": 18,
+        "ba_winner": 18,
+        "consistent": true
+      },
+      {
+        "task_pair": [
+          0,
+          2
+        ],
+        "ab_winner": 0,
+        "ba_winner": 0,
+        "consistent": true
+      },
+      {
+        "task_pair": [
+          15,
+          16
+        ],
+        "ab_winner": 15,
+        "ba_winner": 16,
+        "consistent": false
+      },
+      {
+        "task_pair": [
+          16,
+          18
+        ],
+        "ab_winner": 16,
+        "ba_winner": 16,
+        "consistent": true
+      },
+      {
+        "task_pair": [
+          0,
+          1
+        ],
+        "ab_winner": 0,
+        "ba_winner": 1,
+        "consistent": false
+      },
+      {
+        "task_pair": [
+          7,
+          9
+        ],
+        "ab_winner": 7,
+        "ba_winner": 9,
+        "consistent": false
+      },
+      {
+        "task_pair": [
+          3,
+          5
+        ],
+        "ab_winner": 5,
+        "ba_winner": 5,
+        "consistent": true
+      },
+      {
+        "task_pair": [
+          14,
+          15
+        ],
+        "ab_winner": 15,
+        "ba_winner": 15,
+        "consistent": true
+      },
+      {
+        "task_pair": [
+          11,
+          19
+        ],
+        "ab_winner": 11,
+        "ba_winner": 19,
+        "consistent": false
+      },
+      {
+        "task_pair": [
+          0,
+          14
+        ],
+        "ab_winner": 0,
+        "ba_winner": 0,
+        "consistent": true
+      },
+      {
+        "task_pair": [
+          13,
+          15
+        ],
+        "ab_winner": 13,
+        "ba_winner": 15,
+        "consistent": false
+      },
+      {
+        "task_pair": [
+          5,
+          6
+        ],
+        "ab_winner": 5,
+        "ba_winner": 6,
+        "consistent": false
+      },
+      {
+        "task_pair": [
+          4,
+          13
+        ],
+        "ab_winner": 13,
+        "ba_winner": 13,
+        "consistent": true
+      },
+      {
+        "task_pair": [
+          11,
+          13
+        ],
+        "ab_winner": 11,
+        "ba_winner": 13,
+        "consistent": false
+      },
+      {
+        "task_pair": [
+          10,
+          11
+        ],
+        "ab_winner": 10,
+        "ba_winner": 11,
+        "consistent": false
+      },
+      {
+        "task_pair": [
+          4,
+          12
+        ],
+        "ab_winner": 4,
+        "ba_winner": 12,
+        "consistent": false
+      },
+      {
+        "task_pair": [
+          17,
+          18
+        ],
+        "ab_winner": 17,
+        "ba_winner": 18,
+        "consistent": false
+      },
+      {
+        "task_pair": [
+          9,
+          11
+        ],
+        "ab_winner": 9,
+        "ba_winner": 11,
+        "consistent": false
+      },
+      {
+        "task_pair": [
+          3,
+          4
+        ],
+        "ab_winner": 4,
+        "ba_winner": 4,
+        "consistent": true
+      },
+      {
+        "task_pair": [
+          5,
+          7
+        ],
+        "ab_winner": 5,
+        "ba_winner": 7,
+        "consistent": false
+      },
+      {
+        "task_pair": [
+          7,
+          8
+        ],
+        "ab_winner": 7,
+        "ba_winner": 8,
+        "consistent": false
+      }
+    ]
+  },
+  "transitivity": {
+    "total_triplets": 1140,
+    "violations": 31,
+    "violation_rate": 0.027192982456140352,
+    "examples": [
+      [
+        0,
+        2,
+        4
+      ],
+      [
+        1,
+        2,
+        4
+      ],
+      [
+        1,
+        2,
+        12
+      ],
+      [
+        2,
+        8,
+        11
+      ],
+      [
+        2,
+        12,
+        13
+      ]
+    ]
+  },
+  "subject_stability": {
+    "total_multi_comparison_pairs": 44,
+    "consistent_pairs": 16,
+    "stability_rate": 0.36363636363636365,
+    "details": [
+      {
+        "subject_pair": [
+          "college_physics",
+          "conceptual_physics"
+        ],
+        "total_comparisons": 2,
+        "winner_distribution": {
+          "conceptual_physics": 2
+        },
+        "dominant_winner": "conceptual_physics",
+        "consistency_rate": 1.0
+      },
+      {
+        "subject_pair": [
+          "anatomy",
+          "astronomy"
+        ],
+        "total_comparisons": 2,
+        "winner_distribution": {
+          "anatomy": 2
+        },
+        "dominant_winner": "anatomy",
+        "consistency_rate": 1.0
+      },
+      {
+        "subject_pair": [
+          "computer_security",
+          "conceptual_physics"
+        ],
+        "total_comparisons": 2,
+        "winner_distribution": {
+          "computer_security": 1,
+          "conceptual_physics": 1
+        },
+        "dominant_winner": "computer_security",
+        "consistency_rate": 0.5
+      },
+      {
+        "subject_pair": [
+          "econometrics",
+          "electrical_engineering"
+        ],
+        "total_comparisons": 2,
+        "winner_distribution": {
+          "econometrics": 2
+        },
+        "dominant_winner": "econometrics",
+        "consistency_rate": 1.0
+      },
+      {
+        "subject_pair": [
+          "clinical_knowledge",
+          "college_chemistry"
+        ],
+        "total_comparisons": 2,
+        "winner_distribution": {
+          "clinical_knowledge": 1,
+          "college_chemistry": 1
+        },
+        "dominant_winner": "clinical_knowledge",
+        "consistency_rate": 0.5
+      },
+      {
+        "subject_pair": [
+          "astronomy",
+          "business_ethics"
+        ],
+        "total_comparisons": 2,
+        "winner_distribution": {
+          "astronomy": 2
+        },
+        "dominant_winner": "astronomy",
+        "consistency_rate": 1.0
+      },
+      {
+        "subject_pair": [
+          "anatomy",
+          "business_ethics"
+        ],
+        "total_comparisons": 2,
+        "winner_distribution": {
+          "anatomy": 2
+        },
+        "dominant_winner": "anatomy",
+        "consistency_rate": 1.0
+      },
+      {
+        "subject_pair": [
+          "business_ethics",
+          "econometrics"
+        ],
+        "total_comparisons": 2,
+        "winner_distribution": {
+          "econometrics": 2
+        },
+        "dominant_winner": "econometrics",
+        "consistency_rate": 1.0
+      },
+      {
+        "subject_pair": [
+          "college_chemistry",
+          "college_computer_science"
+        ],
+        "total_comparisons": 2,
+        "winner_distribution": {
+          "college_chemistry": 1,
+          "college_computer_science": 1
+        },
+        "dominant_winner": "college_chemistry",
+        "consistency_rate": 0.5
+      },
+      {
+        "subject_pair": [
+          "college_medicine",
+          "conceptual_physics"
+        ],
+        "total_comparisons": 2,
+        "winner_distribution": {
+          "college_medicine": 1,
+          "conceptual_physics": 1
+        },
+        "dominant_winner": "college_medicine",
+        "consistency_rate": 0.5
+      },
+      {
+        "subject_pair": [
+          "conceptual_physics",
+          "electrical_engineering"
+        ],
+        "total_comparisons": 2,
+        "winner_distribution": {
+          "conceptual_physics": 1,
+          "electrical_engineering": 1
+        },
+        "dominant_winner": "conceptual_physics",
+        "consistency_rate": 0.5
+      },
+      {
+        "subject_pair": [
+          "electrical_engineering",
+          "formal_logic"
+        ],
+        "total_comparisons": 2,
+        "winner_distribution": {
+          "formal_logic": 2
+        },
+        "dominant_winner": "formal_logic",
+        "consistency_rate": 1.0
+      },
+      {
+        "subject_pair": [
+          "conceptual_physics",
+          "econometrics"
+        ],
+        "total_comparisons": 2,
+        "winner_distribution": {
+          "conceptual_physics": 1,
+          "econometrics": 1
+        },
+        "dominant_winner": "conceptual_physics",
+        "consistency_rate": 0.5
+      },
+      {
+        "subject_pair": [
+          "astronomy",
+          "clinical_knowledge"
+        ],
+        "total_comparisons": 2,
+        "winner_distribution": {
+          "astronomy": 1,
+          "clinical_knowledge": 1
+        },
+        "dominant_winner": "astronomy",
+        "consistency_rate": 0.5
+      },
+      {
+        "subject_pair": [
+          "global_facts",
+          "high_school_chemistry"
+        ],
+        "total_comparisons": 2,
+        "winner_distribution": {
+          "high_school_chemistry": 1,
+          "global_facts": 1
+        },
+        "dominant_winner": "high_school_chemistry",
+        "consistency_rate": 0.5
+      },
+      {
+        "subject_pair": [
+          "college_chemistry",
+          "college_mathematics"
+        ],
+        "total_comparisons": 2,
+        "winner_distribution": {
+          "college_chemistry": 1,
+          "college_mathematics": 1
+        },
+        "dominant_winner": "college_chemistry",
+        "consistency_rate": 0.5
+      },
+      {
+        "subject_pair": [
+          "formal_logic",
+          "global_facts"
+        ],
+        "total_comparisons": 2,
+        "winner_distribution": {
+          "global_facts": 1,
+          "formal_logic": 1
+        },
+        "dominant_winner": "global_facts",
+        "consistency_rate": 0.5
+      },
+      {
+        "subject_pair": [
+          "college_medicine",
+          "college_physics"
+        ],
+        "total_comparisons": 2,
+        "winner_distribution": {
+          "college_medicine": 1,
+          "college_physics": 1
+        },
+        "dominant_winner": "college_medicine",
+        "consistency_rate": 0.5
+      },
+      {
+        "subject_pair": [
+          "college_mathematics",
+          "college_physics"
+        ],
+        "total_comparisons": 2,
+        "winner_distribution": {
+          "college_mathematics": 1,
+          "college_physics": 1
+        },
+        "dominant_winner": "college_mathematics",
+        "consistency_rate": 0.5
+      },
+      {
+        "subject_pair": [
+          "business_ethics",
+          "formal_logic"
+        ],
+        "total_comparisons": 2,
+        "winner_distribution": {
+          "formal_logic": 2
+        },
+        "dominant_winner": "formal_logic",
+        "consistency_rate": 1.0
+      },
+      {
+        "subject_pair": [
+          "elementary_mathematics",
+          "global_facts"
+        ],
+        "total_comparisons": 2,
+        "winner_distribution": {
+          "global_facts": 1,
+          "elementary_mathematics": 1
+        },
+        "dominant_winner": "global_facts",
+        "consistency_rate": 0.5
+      },
+      {
+        "subject_pair": [
+          "clinical_knowledge",
+          "college_biology"
+        ],
+        "total_comparisons": 2,
+        "winner_distribution": {
+          "college_biology": 1,
+          "clinical_knowledge": 1
+        },
+        "dominant_winner": "college_biology",
+        "consistency_rate": 0.5
+      },
+      {
+        "subject_pair": [
+          "college_mathematics",
+          "college_medicine"
+        ],
+        "total_comparisons": 2,
+        "winner_distribution": {
+          "college_mathematics": 1,
+          "college_medicine": 1
+        },
+        "dominant_winner": "college_mathematics",
+        "consistency_rate": 0.5
+      },
+      {
+        "subject_pair": [
+          "high_school_biology",
+          "high_school_chemistry"
+        ],
+        "total_comparisons": 2,
+        "winner_distribution": {
+          "high_school_biology": 2
+        },
+        "dominant_winner": "high_school_biology",
+        "consistency_rate": 1.0
+      },
+      {
+        "subject_pair": [
+          "abstract_algebra",
+          "astronomy"
+        ],
+        "total_comparisons": 2,
+        "winner_distribution": {
+          "abstract_algebra": 2
+        },
+        "dominant_winner": "abstract_algebra",
+        "consistency_rate": 1.0
+      },
+      {
+        "subject_pair": [
+          "elementary_mathematics",
+          "formal_logic"
+        ],
+        "total_comparisons": 2,
+        "winner_distribution": {
+          "formal_logic": 1,
+          "elementary_mathematics": 1
+        },
+        "dominant_winner": "formal_logic",
+        "consistency_rate": 0.5
+      },
+      {
+        "subject_pair": [
+          "formal_logic",
+          "high_school_biology"
+        ],
+        "total_comparisons": 2,
+        "winner_distribution": {
+          "formal_logic": 2
+        },
+        "dominant_winner": "formal_logic",
+        "consistency_rate": 1.0
+      },
+      {
+        "subject_pair": [
+          "abstract_algebra",
+          "anatomy"
+        ],
+        "total_comparisons": 2,
+        "winner_distribution": {
+          "anatomy": 1,
+          "abstract_algebra": 1
+        },
+        "dominant_winner": "anatomy",
+        "consistency_rate": 0.5
+      },
+      {
+        "subject_pair": [
+          "college_computer_science",
+          "college_medicine"
+        ],
+        "total_comparisons": 2,
+        "winner_distribution": {
+          "college_medicine": 1,
+          "college_computer_science": 1
+        },
+        "dominant_winner": "college_medicine",
+        "consistency_rate": 0.5
+      },
+      {
+        "subject_pair": [
+          "business_ethics",
+          "college_biology"
+        ],
+        "total_comparisons": 2,
+        "winner_distribution": {
+          "college_biology": 2
+        },
+        "dominant_winner": "college_biology",
+        "consistency_rate": 1.0
+      },
+      {
+        "subject_pair": [
+          "electrical_engineering",
+          "elementary_mathematics"
+        ],
+        "total_comparisons": 2,
+        "winner_distribution": {
+          "elementary_mathematics": 2
+        },
+        "dominant_winner": "elementary_mathematics",
+        "consistency_rate": 1.0
+      },
+      {
+        "subject_pair": [
+          "computer_security",
+          "high_school_chemistry"
+        ],
+        "total_comparisons": 2,
+        "winner_distribution": {
+          "high_school_chemistry": 1,
+          "computer_security": 1
+        },
+        "dominant_winner": "high_school_chemistry",
+        "consistency_rate": 0.5
+      },
+      {
+        "subject_pair": [
+          "abstract_algebra",
+          "electrical_engineering"
+        ],
+        "total_comparisons": 2,
+        "winner_distribution": {
+          "abstract_algebra": 2
+        },
+        "dominant_winner": "abstract_algebra",
+        "consistency_rate": 1.0
+      },
+      {
+        "subject_pair": [
+          "econometrics",
+          "elementary_mathematics"
+        ],
+        "total_comparisons": 2,
+        "winner_distribution": {
+          "econometrics": 1,
+          "elementary_mathematics": 1
+        },
+        "dominant_winner": "econometrics",
+        "consistency_rate": 0.5
+      },
+      {
+        "subject_pair": [
+          "college_biology",
+          "college_chemistry"
+        ],
+        "total_comparisons": 2,
+        "winner_distribution": {
+          "college_chemistry": 1,
+          "college_biology": 1
+        },
+        "dominant_winner": "college_chemistry",
+        "consistency_rate": 0.5
+      },
+      {
+        "subject_pair": [
+          "clinical_knowledge",
+          "econometrics"
+        ],
+        "total_comparisons": 2,
+        "winner_distribution": {
+          "econometrics": 2
+        },
+        "dominant_winner": "econometrics",
+        "consistency_rate": 1.0
+      },
+      {
+        "subject_pair": [
+          "computer_security",
+          "econometrics"
+        ],
+        "total_comparisons": 2,
+        "winner_distribution": {
+          "computer_security": 1,
+          "econometrics": 1
+        },
+        "dominant_winner": "computer_security",
+        "consistency_rate": 0.5
+      },
+      {
+        "subject_pair": [
+          "college_physics",
+          "computer_security"
+        ],
+        "total_comparisons": 2,
+        "winner_distribution": {
+          "computer_security": 1,
+          "college_physics": 1
+        },
+        "dominant_winner": "computer_security",
+        "consistency_rate": 0.5
+      },
+      {
+        "subject_pair": [
+          "clinical_knowledge",
+          "conceptual_physics"
+        ],
+        "total_comparisons": 2,
+        "winner_distribution": {
+          "conceptual_physics": 1,
+          "clinical_knowledge": 1
+        },
+        "dominant_winner": "conceptual_physics",
+        "consistency_rate": 0.5
+      },
+      {
+        "subject_pair": [
+          "global_facts",
+          "high_school_biology"
+        ],
+        "total_comparisons": 2,
+        "winner_distribution": {
+          "high_school_biology": 1,
+          "global_facts": 1
+        },
+        "dominant_winner": "high_school_biology",
+        "consistency_rate": 0.5
+      },
+      {
+        "subject_pair": [
+          "college_medicine",
+          "computer_security"
+        ],
+        "total_comparisons": 2,
+        "winner_distribution": {
+          "college_medicine": 1,
+          "computer_security": 1
+        },
+        "dominant_winner": "college_medicine",
+        "consistency_rate": 0.5
+      },
+      {
+        "subject_pair": [
+          "business_ethics",
+          "clinical_knowledge"
+        ],
+        "total_comparisons": 2,
+        "winner_distribution": {
+          "clinical_knowledge": 2
+        },
+        "dominant_winner": "clinical_knowledge",
+        "consistency_rate": 1.0
+      },
+      {
+        "subject_pair": [
+          "college_biology",
+          "college_computer_science"
+        ],
+        "total_comparisons": 2,
+        "winner_distribution": {
+          "college_biology": 1,
+          "college_computer_science": 1
+        },
+        "dominant_winner": "college_biology",
+        "consistency_rate": 0.5
+      },
+      {
+        "subject_pair": [
+          "college_computer_science",
+          "college_mathematics"
+        ],
+        "total_comparisons": 2,
+        "winner_distribution": {
+          "college_mathematics": 1,
+          "college_computer_science": 1
+        },
+        "dominant_winner": "college_mathematics",
+        "consistency_rate": 0.5
+      }
+    ]
+  },
+  "order_consistency": {
+    "ab_choice_a_rate": 0.8169014084507042,
+    "ba_choice_a_rate": 0.7848101265822784,
+    "bias_difference": 0.0320912818684258,
+    "bias_consistency": 0.9679087181315742
+  },
+  "time_patterns": {
+    "time_stats": {
+      "mean": 0.2853228791554769,
+      "median": 0.2579166889190674,
+      "std": 0.0911228346724555,
+      "min": 0.1894834041595459,
+      "max": 0.7751317024230957
+    },
+    "fast_choice_a_rate": 0.8266666666666667,
+    "slow_choice_a_rate": 0.7733333333333333,
+    "time_bias_difference": 0.053333333333333344
+  }
+}

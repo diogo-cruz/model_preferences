@@ -18,8 +18,8 @@
 
 ### `model_preferences`:
 
-* You don't need to run all the pairwise comparisons for the tasks that you considered, since that grows very quickly, you just need to pick a representative (or even random) subset.
-* Don't forget to analyze your results and plot them.
+* Besides the plots that you change currently, also analyze and plot how consistent the model is in its preferences.
+* Commit your changes to the repository https://github.com/diogo-cruz/model_preferences.
 
 ## Iteration Workflow
 
