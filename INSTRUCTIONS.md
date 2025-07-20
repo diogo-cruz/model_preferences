@@ -16,8 +16,8 @@
 
 ## Project-Specific Next Steps Instructions
 
-* Added error bars to the plots, and check if the variance of the results is not enough to explain the variability between categories. Rerun the experiments with more samples, if necessary. The current plots indicated the "number of wins", but they should indicate a ratio, since I don't know the absolute number of wins from looking at the figure.
-* I'm not interested about response times, so you don't need to run that analysis and plotting. I'm also not interested in API success rates. What I care about is quantifying the bias of the model towards the first or second task in the prompt, correcting for that, and then checking if the model has a preference for certain categories, and if so, how strong that preference is.
+* Your open ended question prompt tells the model what the consider, so it is biasing the results. I want the prompt to be super simple. You should tell the model that it must do one of two tasks, and to pick which one it wants to do. That's it. And you should randomize the order of the tasks in the prompt to account for the bias.
+* The current error bars are pretty big, so run 5x more examples, if possible.
 
 ## Iteration Workflow
 
