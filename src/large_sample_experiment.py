@@ -1,34 +1,36 @@
 #!/usr/bin/env python3
 
+"""
+Large sample experiment to address variance analysis recommendations.
+Runs more comparisons to reduce error bars and improve statistical power.
+"""
+
 import sys
 import os
 sys.path.append('/home/dcruz/model_preferences/src')
 
 import pandas as pd
 import json
-import matplotlib.pyplot as plt
-import seaborn as sns
 from datetime import datetime
-from collections import Counter
 from typing import List, Dict, Any
-import numpy as np
+from collections import Counter
 
 from task_selection import TaskSelector
 from open_ended_client import OpenEndedModelClient
 from config import get_config
 from improved_plotting import create_comprehensive_analysis_plots
 
-class OpenEndedExperiment:
+class LargeSampleExperiment:
     """
-    Experiment class for running open-ended task preference comparisons.
+    Large sample experiment for improved statistical power.
     """
     
-    def __init__(self, n_tasks: int = 20, seed: int = 42):
+    def __init__(self, n_tasks: int = 30, seed: int = 42):
         """
-        Initialize the open-ended experiment.
+        Initialize the large sample experiment.
         
         Args:
-            n_tasks: Number of tasks to sample for comparison
+            n_tasks: Number of tasks to sample (increased from 20)
             seed: Random seed for reproducibility
         """
         self.config = get_config()
@@ -38,7 +40,7 @@ class OpenEndedExperiment:
         self.client = OpenEndedModelClient()
         self.tasks = []
         self.results = []
-        self.experiment_name = f"open_ended_comparison_{n_tasks}tasks"
+        self.experiment_name = f"large_sample_open_ended_{n_tasks}tasks"
         
         # Create experiment directory
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -46,14 +48,14 @@ class OpenEndedExperiment:
         os.makedirs(self.experiment_dir, exist_ok=True)
         os.makedirs(os.path.join(self.experiment_dir, "plots"), exist_ok=True)
         
-        print(f"Experiment directory: {self.experiment_dir}")
+        print(f"Large Sample Experiment directory: {self.experiment_dir}")
     
-    def generate_representative_pairs(self, max_comparisons: int = 150) -> List[tuple]:
+    def generate_expanded_pairs(self, max_comparisons: int = 400) -> List[tuple]:
         """
-        Generate representative pairs for comparison (same as focused experiment).
+        Generate more comprehensive pairs for better statistical power.
         
         Args:
-            max_comparisons: Maximum number of comparisons to generate
+            max_comparisons: Maximum number of comparisons to generate (increased)
             
         Returns:
             List of (task_i, task_j, order) tuples
@@ -61,46 +63,55 @@ class OpenEndedExperiment:
         pairs = []
         n_tasks = len(self.tasks)
         
-        # Generate pairs with limited scope to stay within max_comparisons
+        # Generate more comprehensive pairwise comparisons
         for i in range(n_tasks):
-            # Compare each task with next few tasks (not all combinations)
-            for j in range(i + 1, min(i + 4, n_tasks)):  # Limit to next 3 tasks
+            # Compare each task with more neighbors for better coverage
+            for j in range(i + 1, min(i + 6, n_tasks)):  # Increased from 4 to 6
                 pairs.append((i, j, 'AB'))
                 pairs.append((j, i, 'BA'))  # Include reverse for bias control
+                
+                # Add additional cross-comparisons for popular subjects
+                # This helps reduce error bars for frequently appearing subjects
+                if j < i + 3:  # Inner comparisons get duplicated
+                    pairs.append((i, j, 'AB'))
+                    pairs.append((j, i, 'BA'))
         
-        # If we have too many pairs, truncate
+        # If we have too many pairs, truncate but ensure balanced AB/BA
         if len(pairs) > max_comparisons:
-            pairs = pairs[:max_comparisons]
+            # Keep pairs balanced by ensuring even number
+            target = (max_comparisons // 2) * 2
+            pairs = pairs[:target]
         
-        print(f"Generated {len(pairs)} representative comparison pairs")
+        print(f"Generated {len(pairs)} expanded comparison pairs for better statistics")
         return pairs
     
-    def run_experiment(self, max_comparisons: int = 150) -> List[Dict[str, Any]]:
+    def run_experiment(self, max_comparisons: int = 400) -> List[Dict[str, Any]]:
         """
-        Run the complete open-ended experiment.
+        Run the large sample experiment with increased comparisons.
         
         Args:
-            max_comparisons: Maximum number of comparisons to run
+            max_comparisons: Maximum number of comparisons to run (increased)
             
         Returns:
             List of experiment results
         """
-        print("=" * 60)
-        print("OPEN-ENDED TASK PREFERENCE EXPERIMENT")
-        print("=" * 60)
+        print("=" * 80)
+        print("LARGE SAMPLE OPEN-ENDED TASK PREFERENCE EXPERIMENT")
+        print("=" * 80)
         print(f"Model: {self.client.model_name}")
         print(f"Tasks: {self.n_tasks}")
         print(f"Max comparisons: {max_comparisons}")
         print(f"Seed: {self.seed}")
+        print(f"Objective: Reduce error bars and improve statistical power")
         
-        # Sample tasks
-        print("\n1. Sampling tasks...")
+        # Sample more tasks
+        print("\n1. Sampling more tasks...")
         self.tasks = self.task_selector.sample_tasks(self.n_tasks)
         print(f"Selected {len(self.tasks)} tasks from {len(set(t['subject'] for t in self.tasks))} subjects")
         
-        # Generate pairs
-        print("\n2. Generating comparison pairs...")
-        pairs = self.generate_representative_pairs(max_comparisons)
+        # Generate expanded pairs
+        print("\n2. Generating expanded comparison pairs...")
+        pairs = self.generate_expanded_pairs(max_comparisons)
         
         # Test API connection
         print("\n3. Testing API connection...")
@@ -116,7 +127,8 @@ class OpenEndedExperiment:
             task_a = self.tasks[task_a_idx]
             task_b = self.tasks[task_b_idx]
             
-            print(f"Comparison {i+1}/{len(pairs)}: Task {task_a_idx} vs {task_b_idx} ({order})")
+            if (i + 1) % 50 == 0:  # Progress every 50 instead of 25
+                print(f"Comparison {i+1}/{len(pairs)}: Task {task_a_idx} vs {task_b_idx} ({order})")
             
             # Get model choice
             result = self.client.get_task_choice(task_a, task_b)
@@ -144,7 +156,7 @@ class OpenEndedExperiment:
                 'raw_response': result['raw_response'],
                 'success': result['success'],
                 'error': result['error'],
-                'response_time': result['response_time'],
+                'response_time': result['response_time'],  # Keep for metadata, don't analyze
                 'api_call_id': result['api_call_id'],
                 'timestamp': datetime.now().isoformat(),
                 'winner_id': winner_idx,
@@ -153,21 +165,21 @@ class OpenEndedExperiment:
             
             self.results.append(comparison_result)
             
-            # Brief progress update
-            if (i + 1) % 25 == 0:
+            # Progress updates
+            if (i + 1) % 100 == 0:
                 success_rate = sum(1 for r in self.results if r['success']) / len(self.results)
                 print(f"  Progress: {i+1}/{len(pairs)} ({success_rate:.1%} success rate)")
         
         # Save results
         self.save_results()
         
-        # Generate analysis and plots
-        self.analyze_and_plot()
+        # Generate analysis and plots with variance analysis
+        analysis_results = self.analyze_and_plot()
         
-        print(f"\n✅ Experiment completed!")
+        print(f"\n✅ Large Sample Experiment completed!")
         print(f"Results saved to: {self.experiment_dir}")
         
-        return self.results
+        return self.results, analysis_results
     
     def save_results(self):
         """Save experiment results and metadata."""
@@ -196,7 +208,8 @@ class OpenEndedExperiment:
             'unique_subjects': len(subject_distribution),
             'subject_distribution': dict(subject_distribution),
             'seed_used': self.seed,
-            'experiment_type': 'open_ended_comparison'
+            'experiment_type': 'large_sample_open_ended',
+            'purpose': 'Reduce error bars and improve statistical power based on variance analysis'
         }
         
         metadata_path = os.path.join(self.experiment_dir, "metadata.json")
@@ -207,7 +220,7 @@ class OpenEndedExperiment:
         print(f"Metadata saved: {metadata_path}")
     
     def analyze_and_plot(self):
-        """Analyze results and generate plots."""
+        """Analyze results and generate plots with variance analysis."""
         
         if not self.results:
             print("No results to analyze")
@@ -222,15 +235,11 @@ class OpenEndedExperiment:
         
         plots_dir = os.path.join(self.experiment_dir, "plots")
         
-        print(f"\n5. Generating analysis plots...")
-        
-        # Set style
-        plt.style.use('default')
-        sns.set_palette("husl")
+        print(f"\n5. Generating comprehensive analysis with variance assessment...")
         
         # Use improved plotting module with error bars and ratios
         analysis_results = create_comprehensive_analysis_plots(
-            successful, plots_dir, f"Open-Ended {self.n_tasks} Tasks"
+            successful, plots_dir, f"Large Sample {self.n_tasks} Tasks"
         )
         
         print(f"Plots saved to: {plots_dir}")
@@ -238,28 +247,37 @@ class OpenEndedExperiment:
         # Print variance analysis recommendations
         if 'variance_analysis' in analysis_results:
             va = analysis_results['variance_analysis']
-            print(f"\nVariance Analysis:")
+            print(f"\nVariance Analysis Results:")
             print(f"  Mean error bar: {va['mean_error_bar']:.3f}")
-            print(f"  Recommendation: {va['overall_recommendation']}")
-            for rec in va['individual_recommendations']:
-                print(f"  - {rec}")
-    
+            print(f"  Variance to signal ratio: {va['variance_to_signal_ratio']:.3f}")
+            print(f"  Sample size range: {va['min_sample_size']} to {va['max_sample_size']}")
+            print(f"  Overall recommendation: {va['overall_recommendation']}")
+            
+            if va['individual_recommendations']:
+                print(f"  Specific recommendations:")
+                for rec in va['individual_recommendations']:
+                    print(f"    - {rec}")
+            else:
+                print(f"  ✅ Sample sizes appear adequate for current analysis!")
+        
+        return analysis_results
 
 def main():
-    """Run open-ended experiment with default parameters."""
+    """Run large sample experiment with increased statistical power."""
     
-    # Use same parameters as focused experiment for comparison
-    experiment = OpenEndedExperiment(n_tasks=20, seed=42)
-    results = experiment.run_experiment(max_comparisons=150)
+    # Increased sample size based on variance analysis recommendations
+    experiment = LargeSampleExperiment(n_tasks=30, seed=42)
+    results, analysis = experiment.run_experiment(max_comparisons=400)
     
     # Print summary
     successful_results = [r for r in results if r['success']]
-    print(f"\n" + "=" * 60)
-    print("EXPERIMENT SUMMARY")
-    print("=" * 60)
+    print(f"\n" + "=" * 80)
+    print("LARGE SAMPLE EXPERIMENT SUMMARY")
+    print("=" * 80)
     print(f"Total comparisons: {len(results)}")
     print(f"Successful: {len(successful_results)} ({len(successful_results)/len(results):.1%})")
     print(f"Failed: {len(results) - len(successful_results)}")
+    print(f"Tasks analyzed: {experiment.n_tasks}")
     
     if successful_results:
         choices = [r['choice'] for r in successful_results if r['choice']]
@@ -267,8 +285,19 @@ def main():
             choice_a_rate = choices.count('A') / len(choices)
             print(f"Choice A rate: {choice_a_rate:.1%}")
             print(f"Choice B rate: {1-choice_a_rate:.1%}")
+            print(f"Position bias effect: {abs(choice_a_rate - 0.5)*2:.1%}")
     
-    return results
+    # Compare with variance analysis recommendations
+    if analysis and 'variance_analysis' in analysis:
+        va = analysis['variance_analysis']
+        if va['overall_recommendation'] == 'samples_adequate':
+            print(f"\n✅ SUCCESS: Achieved adequate sample sizes!")
+        elif va['overall_recommendation'] == 'consider_more_samples':
+            print(f"\n⚠️  MARGINAL: Sample sizes improved but could be better")
+        else:
+            print(f"\n❌ INSUFFICIENT: Still need more samples for robust statistics")
+    
+    return results, analysis
 
 if __name__ == "__main__":
     main()

@@ -1,0 +1,18 @@
+{
+  "experiment_name": "format_comparison_analysis",
+  "timestamp": "20250720_024517",
+  "experiment_type": "format_comparison",
+  "mc_experiment_path": "/home/dcruz/model_preferences/experiments/20250719_232812_focused_representative",
+  "oe_experiment_path": "/home/dcruz/model_preferences/experiments/20250720_002629_open_ended_comparison_20tasks",
+  "mc_total_comparisons": 150,
+  "oe_total_comparisons": 108,
+  "mc_successful_comparisons": 150,
+  "oe_successful_comparisons": 108,
+  "mc_choice_a_rate": 0.8,
+  "oe_choice_a_rate": 0.7037037037037037,
+  "position_bias_reduction": 0.09629629629629632,
+  "statistical_significance_p": 0.10137905344036921,
+  "model_name": "gpt-4.1-nano",
+  "seed_used": 42,
+  "tasks_compared": 20
+}

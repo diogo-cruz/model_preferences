@@ -11,6 +11,7 @@ import numpy as np
 from collections import Counter
 from scipy import stats
 import json
+from improved_plotting import plot_subject_preferences_with_error_bars, plot_position_bias_analysis
 
 def compare_experiment_types():
     """Compare results between multiple choice and open-ended experiments."""
@@ -118,31 +119,8 @@ def compare_experiment_types():
         win_rate = wins / len(oe_winners)
         print(f"  {i}. {subject.replace('_', ' ').title()}: {wins} wins ({win_rate:.1%})")
     
-    # Response time comparison
-    print(f"\n5. RESPONSE TIME COMPARISON")
-    print("-" * 50)
-    
-    mc_times = mc_successful['response_time'].dropna()
-    oe_times = oe_successful['response_time'].dropna()
-    
-    print(f"Multiple Choice:")
-    print(f"  Mean: {mc_times.mean():.3f}s")
-    print(f"  Median: {mc_times.median():.3f}s")
-    print(f"  Std: {mc_times.std():.3f}s")
-    
-    print(f"Open-Ended:")
-    print(f"  Mean: {oe_times.mean():.3f}s")
-    print(f"  Median: {oe_times.median():.3f}s")
-    print(f"  Std: {oe_times.std():.3f}s")
-    
-    # Statistical test for response times
-    from scipy.stats import mannwhitneyu
-    statistic, p_time = mannwhitneyu(mc_times, oe_times, alternative='two-sided')
-    print(f"Response time difference test: p = {p_time:.6f}")
-    print(f"Significant difference: {'Yes' if p_time < 0.05 else 'No'}")
-    
     # Create comparison plots and save metadata
-    output_dir = create_comparison_plots(mc_successful, oe_successful, mc_times, oe_times)
+    output_dir = create_comparison_plots(mc_successful, oe_successful)
     
     # Save comparison metadata
     from datetime import datetime
@@ -160,7 +138,6 @@ def compare_experiment_types():
         'oe_choice_a_rate': oe_choice_a_rate,
         'position_bias_reduction': mc_choice_a_rate - oe_choice_a_rate,
         'statistical_significance_p': p_value,
-        'response_time_difference_p': p_time,
         'model_name': mc_metadata['model_name'],
         'seed_used': mc_metadata['seed'],
         'tasks_compared': mc_metadata['n_tasks']
@@ -177,12 +154,11 @@ def compare_experiment_types():
         'mc_choice_a_rate': mc_choice_a_rate,
         'oe_choice_a_rate': oe_choice_a_rate,
         'position_bias_p_value': p_value,
-        'response_time_p_value': p_time,
         'mc_subject_wins': dict(mc_subject_wins),
         'oe_subject_wins': dict(oe_subject_wins)
     }
 
-def create_comparison_plots(mc_data, oe_data, mc_times, oe_times):
+def create_comparison_plots(mc_data, oe_data):
     """Create comprehensive comparison plots."""
     
     # Set up the plotting style
@@ -197,8 +173,8 @@ def create_comparison_plots(mc_data, oe_data, mc_times, oe_times):
     plots_dir = os.path.join(output_dir, "plots")
     os.makedirs(plots_dir, exist_ok=True)
     
-    # 1. Position Bias Comparison
-    fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(16, 12))
+    # 1. Position Bias and Subject Preference Comparison
+    fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(20, 6))
     fig.suptitle('Multiple Choice vs Open-Ended Comparison', fontsize=16, fontweight='bold')
     
     # Overall choice rates
@@ -246,38 +222,34 @@ def create_comparison_plots(mc_data, oe_data, mc_times, oe_times):
     ax2.legend()
     ax2.set_ylim(0, 1)
     
-    # Response time comparison
-    ax3.hist(mc_times, bins=15, alpha=0.6, label='Multiple Choice', color='lightblue', density=True)
-    ax3.hist(oe_times, bins=15, alpha=0.6, label='Open-Ended', color='lightcoral', density=True)
-    ax3.set_xlabel('Response Time (seconds)')
-    ax3.set_ylabel('Density')
-    ax3.set_title('Response Time Distribution Comparison')
-    ax3.legend()
-    
-    # Subject preferences comparison (top 5 overlap)
+    # Subject preferences comparison using win rates
     mc_winners = mc_data[mc_data['winner_subject'].notna()]
     oe_winners = oe_data[oe_data['winner_subject'].notna()]
     
     mc_subject_wins = Counter(mc_winners['winner_subject'])
     oe_subject_wins = Counter(oe_winners['winner_subject'])
     
+    # Calculate win rates instead of counts
+    mc_total = len(mc_winners)
+    oe_total = len(oe_winners)
+    
     # Get top subjects from both experiments
     all_subjects = set(list(mc_subject_wins.keys()) + list(oe_subject_wins.keys()))
-    top_subjects = sorted(all_subjects, key=lambda x: mc_subject_wins.get(x, 0) + oe_subject_wins.get(x, 0), reverse=True)[:8]
+    top_subjects = sorted(all_subjects, key=lambda x: mc_subject_wins.get(x, 0) + oe_subject_wins.get(x, 0), reverse=True)[:6]
     
-    mc_counts = [mc_subject_wins.get(s, 0) for s in top_subjects]
-    oe_counts = [oe_subject_wins.get(s, 0) for s in top_subjects]
+    mc_rates = [mc_subject_wins.get(s, 0) / mc_total for s in top_subjects]
+    oe_rates = [oe_subject_wins.get(s, 0) / oe_total for s in top_subjects]
     
     x = np.arange(len(top_subjects))
     
-    bars4 = ax4.bar(x - width/2, mc_counts, width, label='Multiple Choice', color='lightblue', alpha=0.7)
-    bars5 = ax4.bar(x + width/2, oe_counts, width, label='Open-Ended', color='lightcoral', alpha=0.7)
+    bars3 = ax3.bar(x - width/2, mc_rates, width, label='Multiple Choice', color='lightblue', alpha=0.7)
+    bars4 = ax3.bar(x + width/2, oe_rates, width, label='Open-Ended', color='lightcoral', alpha=0.7)
     
-    ax4.set_ylabel('Number of Wins')
-    ax4.set_title('Subject Preferences Comparison (Top 8)')
-    ax4.set_xticks(x)
-    ax4.set_xticklabels([s.replace('_', ' ')[:10] for s in top_subjects], rotation=45, ha='right')
-    ax4.legend()
+    ax3.set_ylabel('Win Rate (Proportion)')
+    ax3.set_title('Subject Preferences Comparison (Top 6)')
+    ax3.set_xticks(x)
+    ax3.set_xticklabels([s.replace('_', ' ')[:8] for s in top_subjects], rotation=45, ha='right')
+    ax3.legend()
     
     plt.tight_layout()
     plt.savefig(os.path.join(plots_dir, 'experiment_comparison.png'), dpi=300, bbox_inches='tight')
@@ -304,35 +276,36 @@ def create_comparison_plots(mc_data, oe_data, mc_times, oe_times):
         ax1.text(bar.get_x() + bar.get_width()/2., height + 0.01,
                 f'{effect:.2f}', ha='center', va='bottom')
     
-    # Response time vs choice pattern
-    mc_median_time = mc_times.median()
-    oe_median_time = oe_times.median()
+    # Bias consistency across experiment halves
+    mc_n = len(mc_data)
+    oe_n = len(oe_data)
     
-    mc_fast = mc_data[mc_data['response_time'] <= mc_median_time]
-    mc_slow = mc_data[mc_data['response_time'] > mc_median_time]
-    oe_fast = oe_data[oe_data['response_time'] <= oe_median_time]
-    oe_slow = oe_data[oe_data['response_time'] > oe_median_time]
+    mc_first_half = mc_data.iloc[:mc_n//2]
+    mc_second_half = mc_data.iloc[mc_n//2:]
+    oe_first_half = oe_data.iloc[:oe_n//2]
+    oe_second_half = oe_data.iloc[oe_n//2:]
     
-    mc_fast_a = (mc_fast['choice'] == 'A').mean() if len(mc_fast) > 0 else 0
-    mc_slow_a = (mc_slow['choice'] == 'A').mean() if len(mc_slow) > 0 else 0
-    oe_fast_a = (oe_fast['choice'] == 'A').mean() if len(oe_fast) > 0 else 0
-    oe_slow_a = (oe_slow['choice'] == 'A').mean() if len(oe_slow) > 0 else 0
+    mc_first_a = (mc_first_half['choice'] == 'A').mean() if len(mc_first_half) > 0 else 0
+    mc_second_a = (mc_second_half['choice'] == 'A').mean() if len(mc_second_half) > 0 else 0
+    oe_first_a = (oe_first_half['choice'] == 'A').mean() if len(oe_first_half) > 0 else 0
+    oe_second_a = (oe_second_half['choice'] == 'A').mean() if len(oe_second_half) > 0 else 0
     
-    speed_categories = ['Fast\n(≤ median)', 'Slow\n(> median)']
-    mc_speed_rates = [mc_fast_a, mc_slow_a]
-    oe_speed_rates = [oe_fast_a, oe_slow_a]
+    halves = ['First Half', 'Second Half']
+    mc_half_rates = [mc_first_a, mc_second_a]
+    oe_half_rates = [oe_first_a, oe_second_a]
     
-    x = np.arange(len(speed_categories))
+    x = np.arange(len(halves))
     
-    bars1 = ax2.bar(x - width/2, mc_speed_rates, width, label='Multiple Choice', color='lightblue', alpha=0.7)
-    bars2 = ax2.bar(x + width/2, oe_speed_rates, width, label='Open-Ended', color='lightcoral', alpha=0.7)
+    bars1 = ax2.bar(x - width/2, mc_half_rates, width, label='Multiple Choice', color='lightblue', alpha=0.7)
+    bars2 = ax2.bar(x + width/2, oe_half_rates, width, label='Open-Ended', color='lightcoral', alpha=0.7)
     
     ax2.set_ylabel('Choice A Rate')
-    ax2.set_title('Response Speed vs Choice Pattern')
+    ax2.set_title('Bias Consistency Across Experiment')
     ax2.set_xticks(x)
-    ax2.set_xticklabels(speed_categories)
+    ax2.set_xticklabels(halves)
     ax2.legend()
     ax2.set_ylim(0, 1)
+    ax2.axhline(y=0.5, color='red', linestyle='--', alpha=0.5, label='No Bias')
     
     plt.tight_layout()
     plt.savefig(os.path.join(plots_dir, 'detailed_bias_analysis.png'), dpi=300, bbox_inches='tight')
@@ -353,7 +326,7 @@ def main():
     print(f"1. Position bias is {'REDUCED' if results['oe_choice_a_rate'] < results['mc_choice_a_rate'] else 'MAINTAINED'} in open-ended format")
     print(f"   Multiple Choice: {results['mc_choice_a_rate']:.1%} → Open-Ended: {results['oe_choice_a_rate']:.1%}")
     print(f"2. Statistical significance: p = {results['position_bias_p_value']:.6f}")
-    print(f"3. Open-ended format {'significantly' if results['response_time_p_value'] < 0.05 else 'does not significantly'} change response times")
+    print(f"3. Position bias effect quantified: {(results['mc_choice_a_rate'] - 0.5)*2:.1%} vs {(results['oe_choice_a_rate'] - 0.5)*2:.1%}")
     
     # Calculate preference overlap
     mc_top_subjects = set(list(results['mc_subject_wins'].keys())[:5])
